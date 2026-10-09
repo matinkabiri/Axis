@@ -2,9 +2,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+import sys
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QFont
+from PySide6.QtGui import QFont, QIcon, QPixmap
 from PySide6.QtWidgets import (
     QFileDialog,
     QFrame,
@@ -32,6 +33,12 @@ from app.core.font_inspector import inspect_font
 AXIS_SUGGESTIONS = ["Width", "Slant", "Italic", "Optical Size", "Grade", "Sharpness"]
 
 
+def asset_path(relative_path: str) -> Path:
+    """Resolve an asset both from source and from a PyInstaller bundle."""
+    bundle_root = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parents[2]))
+    return bundle_root / relative_path
+
+
 @dataclass
 class FontRow:
     path: str
@@ -45,6 +52,7 @@ class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle("Axis")
+        self.setWindowIcon(QIcon(str(asset_path("reference/LOGO.svg"))))
         self.resize(1280, 820)
         self.rows: list[FontRow] = []
         self.axis_names = ["Weight"]
@@ -60,6 +68,11 @@ class MainWindow(QMainWindow):
         main.setSpacing(20)
 
         header = QHBoxLayout()
+        logo_mark = QLabel()
+        logo_mark.setObjectName("logoMark")
+        logo_pixmap = QPixmap(str(asset_path("reference/LOGO.svg")))
+        logo_mark.setPixmap(logo_pixmap.scaled(34, 34, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        header.addWidget(logo_mark)
         logo = QLabel("Λxis")
         logo.setObjectName("logo")
         header.addWidget(logo)
@@ -148,6 +161,7 @@ class MainWindow(QMainWindow):
             """
             #root { background: #070b14; color: #f5f7ff; }
             #logo { font-size: 31px; font-weight: 700; letter-spacing: 1px; }
+            #logoMark { min-width: 34px; max-width: 34px; }
             #familyLabel, #status { color: rgba(245,247,255,0.58); }
             #emptyState, #workspace { background: rgba(0,0,0,0.80); border: 1px solid rgba(255,255,255,0.14); border-radius: 20px; }
             #emptyState { min-height: 360px; }

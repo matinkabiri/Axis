@@ -13,7 +13,7 @@ a = Analysis(
     [str(project_root / "app" / "main.py")],
     pathex=[str(project_root)],
     binaries=[],
-    datas=[],
+    datas=[(str(project_root / "reference" / "LOGO.svg"), "reference")],
     hiddenimports=hiddenimports,
     hookspath=[],
     hooksconfig={},

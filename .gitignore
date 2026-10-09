@@ -11,6 +11,7 @@ Gothham/
 *.otf
 *.woff
 *.woff2
+*.log
 tmp/
 .idea/
 .vscode/

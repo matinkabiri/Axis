@@ -1,5 +1,9 @@
 # Axis
 
+<p align="center">
+  <img src="reference/LOGO.svg" alt="Axis logo" width="120">
+</p>
+
 Axis is a Windows-first desktop application for turning compatible font masters into variable fonts. The first alpha focuses on the Weight axis and a clear, artist-oriented workflow.
 
 ## Alpha download
@@ -41,3 +45,11 @@ The build produces a self-contained `dist\Axis-Portable` folder and a ZIP archiv
 ## Font licensing
 
 Do not commit commercial or licensed source fonts to this repository. Users should select their own font files locally through Axis.
+
+## License
+
+Axis is source-available under the [Axis Source-Available License](LICENSE.md).
+You may install, use, and modify Axis subject to that license. Commercial
+resale and commercial exploitation of Axis or modified versions are not
+permitted. Axis is not an official open-source project under the Open Source
+Definition.
