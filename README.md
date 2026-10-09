@@ -1,6 +1,5 @@
-# Axis
 
-<p align="center">
+<p align="left">
   <img src="reference/LOGO.svg" alt="Axis logo" width="120">
 </p>
 
